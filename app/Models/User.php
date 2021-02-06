@@ -40,4 +40,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getSystemAdmin()
+    {
+        return self::query()->whereEmail(config('blogger.system_admin'))->first();
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(BlogPost::class);
+    }
+
 }
