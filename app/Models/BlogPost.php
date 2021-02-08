@@ -14,19 +14,13 @@ class BlogPost extends Model
 
     protected $dates = ['publication_date'];
 
+    public function getPublishedDateAttribute()
+    {
+        return $this->publication_date->format('d F, Y');
+    }
+
     public static function createFromData(array $data)
     {
-
-        $validator = Validator::make($data, [
-            'data' => 'required|array',
-            'data.*.title' => 'required',
-            'data.*.publication_date' => 'required|date',
-        ]);
-
-        if($validator->fails()) {
-            return ;
-        }
-
         foreach ($data['data'] as $post) {
             self::createAsAdmin($post);
         }

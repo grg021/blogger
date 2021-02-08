@@ -50,7 +50,6 @@ class FetchBlogs extends Command
             if($response->ok()) {
                 $data = $response->json();
                 BlogPost::createFromData($data);
-
             }
         }
 
