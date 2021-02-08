@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -43,7 +44,7 @@ class User extends Authenticatable
 
     public static function getSystemAdmin()
     {
-        return self::query()->whereEmail(config('blogger.system_admin'))->first();
+        return self::query()->whereUsername('admin')->first();
     }
 
     public function blogs()

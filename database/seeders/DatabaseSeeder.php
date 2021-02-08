@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     {
          \App\Models\User::factory()->create([
              'name' => 'System Admin',
-             'email' => config('blogger.system_admin', 'greg.hermo@gmail.com'),
+             'username' => 'admin',
+             'email' => 'system.admin@email.com',
              'password' => bcrypt('Asdf123$')
          ]);
     }
