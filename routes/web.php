@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [\App\Http\Controllers\BlogPostController::class, 'index'])
-    ->name('blogs');
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
-Route::get('/posts/{blogPost:slug}', [\App\Http\Controllers\BlogPostController::class, 'show'])
-    ->name('blogs.show');
+Route::get('/posts/{blogPost:slug}', [HomeController::class, 'show'])
+    ->name('home.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::resource('/blogs', BlogController::class)->middleware('auth');
+
 
 require __DIR__.'/auth.php';

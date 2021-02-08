@@ -1,55 +1,24 @@
-<x-main>
-    <div class="container w-full md:max-w-3xl mx-auto pt-20">
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Manage Blogs') }}
+        </h2>
+            <div class="flex-grow"></div>
+        <a href="/blogs/create" class="btn btn-blue">Create</a>
+        </div>
+    </x-slot>
 
-        @foreach($blogs as $post)
-            <x-post type="PREVIEW" :post="$post" />
-            @if (!$loop->last)
-                <hr class="border-b-2 border-gray-400 mb-8 mx-4">
-            @endif
-        @endforeach
-
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                @foreach($blogs as $post)
+                    <x-post type="PREVIEW" :post="$post" />
+                    @if (!$loop->last)
+                        <hr class="border-b-2 border-gray-400 mb-8 mx-4">
+                    @endif
+                @endforeach
+            </div>
+        </div>
     </div>
-    <script>
-        /* Progress bar */
-        //Source: https://alligator.io/js/progress-bar-javascript-css-variables/
-        var h = document.documentElement,
-            b = document.body,
-            st = 'scrollTop',
-            sh = 'scrollHeight',
-            progress = document.querySelector('#progress'),
-            scroll;
-        var scrollpos = window.scrollY;
-        var header = document.getElementById("header");
-        var navcontent = document.getElementById("nav-content");
-
-        document.addEventListener('scroll', function() {
-
-            /*Refresh scroll % width*/
-            scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
-            progress.style.setProperty('--scroll', scroll + '%');
-
-            /*Apply classes for slide in bar*/
-            scrollpos = window.scrollY;
-
-            if (scrollpos > 10) {
-                header.classList.add("bg-white");
-                header.classList.add("shadow");
-                navcontent.classList.remove("bg-gray-100");
-                navcontent.classList.add("bg-white");
-            } else {
-                header.classList.remove("bg-white");
-                header.classList.remove("shadow");
-                navcontent.classList.remove("bg-white");
-                navcontent.classList.add("bg-gray-100");
-
-            }
-
-        });
-
-
-        //Javascript to toggle the menu
-        document.getElementById('nav-toggle').onclick = function() {
-            document.getElementById("nav-content").classList.toggle("hidden");
-        }
-    </script>
-</x-main>
+</x-app-layout>

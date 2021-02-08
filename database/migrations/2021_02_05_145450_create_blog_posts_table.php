@@ -17,7 +17,7 @@ class CreateBlogPostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->dateTime('publication_date');
 
             $table->foreignId('user_id')->constrained();

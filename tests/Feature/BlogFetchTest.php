@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
-class BlogsFetchTest extends TestCase
+class BlogFetchTest extends TestCase
 {
 
     use RefreshDatabase, DatabaseMigrations;

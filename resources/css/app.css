@@ -1,3 +1,18 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150;
+    }
+    .btn-gray {
+        @apply bg-gray-800 hover:bg-gray-700 focus:border-gray-900 focus:ring ring-gray-300;
+    }
+    .btn-blue {
+        @apply bg-blue-800 hover:bg-blue-700 focus:border-blue-900 focus:ring ring-blue-300;
+    }
+    .btn-green {
+        @apply bg-green-800 hover:bg-green-700 focus:border-green-900 focus:ring ring-green-300;
+    }
+}

@@ -25,7 +25,7 @@
 
         <div class="pl-4">
             <a class="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl" href="#">
-                Blogger
+                {{ config('app.name', 'Laravel') }}
             </a>
         </div>
 
@@ -43,7 +43,19 @@
             @if (Route::has('login'))
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     @auth
-                        <li class="mr-3"><a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a></li>
+                        <li class="mr-3"><a href="{{ route('blogs.index') }}" class="text-sm text-gray-700 underline">Manage Blogs</a></li>
+                        <li class="mr-3">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="{{ route('logout') }}"
+                                   class="text-sm text-gray-700 underline"
+                                   onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </form>
+                        </li>
                     @else
                         <li class="mr-3"><a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a></li>
 

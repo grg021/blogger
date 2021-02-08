@@ -4,11 +4,11 @@
     <div class="font-sans">
         @if($type === 'FULL')
         <p class="text-base md:text-sm text-green-500 font-bold">&lt;
-            <a href="{{ route('blogs') }}" class="text-base md:text-sm text-green-500 font-bold no-underline hover:underline">
+            <a href="{{ route('home') }}" class="text-base md:text-sm text-green-500 font-bold no-underline hover:underline">
                 BACK TO BLOG</a></p>
         @endif
         <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
-            <a href="{{ route('blogs.show', ['blogPost' => $post]) }}">{{ $post->title }}</a>
+            <a href="{{ route('home.show', ['blogPost' => $post]) }}">{{ $post->title }}</a>
         </h1>
         <p class="text-sm md:text-base font-normal text-gray-600">Published {{ $post->published_date }} by {{ $post->author }}</p>
     </div>
