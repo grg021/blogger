@@ -9,8 +9,14 @@ class BlogPostController extends Controller
     public function index()
     {
 
-        $data['blogs'] = BlogPost::latest('publication_date')->get();
-
-        return view('home', $data);
+        return view('blogs.index', [
+            'blogs' => BlogPost::latest('publication_date')->get()
+        ]);
     }
+
+    public function show(BlogPost $blogPost)
+    {
+        return view('blogs.show', compact('blogPost'));
+    }
+
 }

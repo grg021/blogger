@@ -7,17 +7,21 @@ use Illuminate\View\Component;
 
 class Post extends Component
 {
-    public $post;
+
+    public string $type;
+
+    public BlogPost $post;
 
     /**
      * Create a new component instance.
      *
-     * @param $post
+     * @param  BlogPost  $post
+     * @param  string  $type
      */
-    public function __construct(BlogPost $post)
+    public function __construct(BlogPost $post, $type = 'FULL')
     {
-        //
         $this->post = $post;
+        $this->type = $type;
     }
 
     /**

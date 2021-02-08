@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [\App\Http\Controllers\BlogPostController::class, 'index'])
-    ->name('home');
+    ->name('blogs');
+
+Route::get('/posts/{blogPost:slug}', [\App\Http\Controllers\BlogPostController::class, 'show'])
+    ->name('blogs.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

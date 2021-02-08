@@ -2,14 +2,26 @@
 
     <!--Title-->
     <div class="font-sans">
-        <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $post->title }}</h1>
-        <p class="text-sm md:text-base font-normal text-gray-600">Published {{ $post->published_date }}</p>
+        @if($type === 'FULL')
+        <p class="text-base md:text-sm text-green-500 font-bold">&lt;
+            <a href="{{ route('blogs') }}" class="text-base md:text-sm text-green-500 font-bold no-underline hover:underline">
+                BACK TO BLOG</a></p>
+        @endif
+        <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+            <a href="{{ route('blogs.show', ['blogPost' => $post]) }}">{{ $post->title }}</a>
+        </h1>
+        <p class="text-sm md:text-base font-normal text-gray-600">Published {{ $post->published_date }} by {{ $post->author }}</p>
     </div>
     <!--/ Title-->
 
 
     <!--Post Content-->
-    <p class="py-6">{!! $post->description !!}</p>
+    @if($type === 'FULL')
+        <p class="py-6">{!! $post->description !!}</p>
+    @else
+        <p class="py-6">{!! $post->short_description !!}</p>
+    @endif
     <!--/ Post Content-->
+
 
 </div>
