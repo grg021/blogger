@@ -1,12 +1,16 @@
 <x-main>
     <div class="container w-full md:max-w-3xl mx-auto pt-20">
 
-        @foreach($blogs as $post)
+        @forelse($blogs as $post)
             <x-post type="PREVIEW" :post="$post" />
             @if (!$loop->last)
                 <hr class="border-b-2 border-gray-400 mb-8 mx-4">
             @endif
-        @endforeach
+        @empty
+            <div class="my-5">
+                <p class="text-2xl text-gray-500">The site currently has no blog post.</p>
+            </div>
+        @endforelse
 
     </div>
     <script>
