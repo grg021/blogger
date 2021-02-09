@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogListRequest;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class BlogController extends Controller
 {
