@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
+use App\Http\Requests\BlogListRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -14,22 +14,18 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BlogListRequest $request)
     {
 
-        $data['sorting_options'] = [
-            'publication_date' => 'Publication Date (asc)',
-            '-publication_date' => 'Publication Date (desc)',
-        ];
+        $data['sorting_options'] = config('blogger.blog.sorting_options', []);
 
-        request()->validate([
-            'sort' => [
-                'nullable',
-                Rule::in(array_keys($data['sorting_options'])),
-            ],
-        ]);
+        $sort_default = $request->session()->get('blog.sort', function () {
+            return '-publication_date';
+        });
 
-        $data['sort'] = request()->input('sort', '-publication_date');
+        $data['sort'] = $request->input('sort', $sort_default);
+
+        $request->session()->put('blog.sort', $data['sort']);
 
         $sortBy = ltrim($data['sort'], '-');
         $sortDir = strpos($data['sort'], '-') === 0 ? 'DESC' : 'ASC';
