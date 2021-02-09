@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
              'name' => 'System Admin',
              'username' => 'admin',
              'email' => 'system.admin@email.com',
-             'password' => bcrypt('Asdf123$')
+             'password' => bcrypt('Asdf1234')
          ]);
          $this->call(UserSeeder::class);
     }
