@@ -21,4 +21,5 @@ php artisan serve
 * fetch blog - fetches blogs from a 3rd party source
 ```php artisan blogs:fetch``` 
   This is also scheduled to run every 15 minutes.
+  ```php artisan schedule:work```
 
